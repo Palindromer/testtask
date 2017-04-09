@@ -1,0 +1,36 @@
+﻿@model List<Test.Models.UserProfile>
+    <label for="CitySelect">Фільтр по місту</label>
+    <select id="CitySelect">
+        <option></option>
+        @foreach (var item in Model.GroupBy(c => c.City))
+        {
+            <option>@item.Key</option>
+        }
+    </select>
+    <label for="AgeSelect">Сортування за віком</label>
+    <select id="AgeSelect">
+        <option></option>
+        <option value="desc">Спочатку старші</option>
+        <option value="asc">Спочатку молодші</option>
+    </select>
+    <table border="1" width="450" style="margin-top:20px;">
+        <thead>
+            <tr>
+                <td><strong>Ім'я</strong></td>
+                <td><strong>Місто</strong></td>
+                <td><strong>Вік</strong></td>
+            </tr>
+        </thead>
+        <tbody id="MyTbody">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.City</td>
+                    <td>@item.Age</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @Scripts.Render("~/scripts/List.js")
